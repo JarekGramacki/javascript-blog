@@ -3,12 +3,12 @@
     console.log('links:', links);
   });*/
 
-  'use strict';
+  
   
   const titleClickHandler = function(event){
     const clickedElement = this;
 
-    console.log('Link was clicked!' );
+    console.log('Link was clicked!', event);
     
     /*[DONE] remove class 'active' from all article links  */
     const activeLinks = document.querySelectorAll('.titles a.active');
