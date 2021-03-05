@@ -3,27 +3,26 @@
     console.log('links:', links);
   });*/
 
-  
+  'use strict';
   
   const titleClickHandler = function(event){
     const clickedElement = this;
-    console.log('Link was clicked!');
+
+    console.log('Link was clicked!' );
     
     /*[DONE] remove class 'active' from all article links  */
     const activeLinks = document.querySelectorAll('.titles a.active');
 
     for(let activeLink of activeLinks){
-    activeLink.classList.remove('active');
+      activeLink.classList.remove('active');
     }
   
     /*[IN PROGRESS] add class 'active' to the clicked link */
-    
-    
+    clickedElement.classList.add('active');
     console.log('clickedElement:', clickedElement);
-    
   
     /*[DONE] remove class 'active' from all articles */
-    const activeArticles = document.querySelectorAll('#article-1');
+    const activeArticles = document.querySelectorAll('posts');
 
     for(let activeArticle of activeArticles){
       activeArticle.classList.remove('active');
