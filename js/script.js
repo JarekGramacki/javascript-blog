@@ -3,8 +3,6 @@
     console.log('links:', links);
   });*/
   
-  // event to obiekt ktory opisuje zdarzenie, zawiera informacje gdzie byl kilk (poz X, Y),
-  // na jaki element (currentTarget=this=kliknieteElement) itp
   const titleClickHandler = function(event){
     event.preventDefault();
     const clickedElement = this;
@@ -13,9 +11,8 @@
     
     /*[DONE] remove class 'active' from all article links  */
     const activeLinks = document.querySelectorAll('.titles a.active');
-    //w petli skaczemy po kazdym elemencie z listy activeLinks
+    
     for(let activeLink of activeLinks){
-      // dla kazdego elementu usuwamy klase active z atrybutu class
       activeLink.classList.remove('active');
     }
   
@@ -33,10 +30,10 @@
     let articleSelector = clickedElement.getAttribute('href');
       
     /* find the correct article using the selector (value of 'href' attribute) */
-    let postToActive = document.querySelector(articleSelector);
+    let targetArticle = document.querySelector(articleSelector);
    
     /* add class 'active' to the correct article */
-    postToActive.classList.add('active');
+    targetArticle.classList.add('active');
   }
 
   
