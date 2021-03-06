@@ -3,7 +3,7 @@
     console.log('links:', links);
   });*/
   
-  // event to obiekt ktory opisuje zdarzenie, zawiera informacj gdzie byl kilk (poz X, Y),
+  // event to obiekt ktory opisuje zdarzenie, zawiera informacje gdzie byl kilk (poz X, Y),
   // na jaki element (currentTarget=this=kliknieteElement) itp
   const titleClickHandler = function(event){
     event.preventDefault();
