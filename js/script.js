@@ -55,11 +55,12 @@
     const titleList = document.querySelector(optTitleListSelector);
     titleList.innerHTML = '';
 
+
+
     /* for each article */
     const articles = document.querySelectorAll(optArticleSelector);
     for(let article of articles){
       
-    }
     /* get the article id */
     const articleId = article.getAttribute('id');
 
@@ -69,9 +70,14 @@
 
     /* create HTML of the link */
     const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
-
+    console.log('sprawdzenie linka html', linkHTML);
+    
     /* insert link into titleList */
-
+    //titleList.innerHTML = titleList.innerHTML + linkHTML;
+    titleList.insertAdjacentHTML('beforebegin','<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>');
+    html = html + linkHTML;
+    }
+    titleList.innerHTML = html;
   }
 
   generateTitleLinks();
