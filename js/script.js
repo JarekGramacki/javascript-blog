@@ -99,7 +99,7 @@ function generateTags(){
     const articleTagsArray = articleTags.split(' ');
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray){
-    console.log('pojedyńcze tagi:', tag);
+      console.log('pojedyńcze tagi:', tag);
       /* generate HTML of the link */
       const linkHTML = '<li><a href="#tag-' + tag + '">' + tag +'</a></li>';
       console.log('link html:',linkHTML);
@@ -109,8 +109,8 @@ function generateTags(){
     /* END LOOP: for each tag */
     }
     /* insert HTML of all the links into the tags wrapper */
-    //tagsWraper.innerHTML = tagsWraper.innerHTML + linkHTML;
-    console.log('Tags Wraper:'.tagsWraper)
+    tagsWraper.innerHTML = html;
+    console.log('Tags Wraper:',tagsWraper)
   /* END LOOP: for every article: */
   }
 }
