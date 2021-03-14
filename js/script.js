@@ -41,10 +41,11 @@ function addClickListenerToAllLinks() {
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
-  optLinkAhrefSelector = '.titles a';
-  optArticleTagsSelector = '.post-tags .list';
-  optArticleTagsSelectorx = '.post-tags .list li a';
-  optArticleAuthorSelector= '.post .post-author';
+  optLinkAhrefSelector = '.titles a',
+  optArticleTagsSelector = '.post-tags .list',
+  optArticleTagsSelectorx = '.post-tags .list li a',
+  optArticleAuthorSelector= '.post .post-author',
+  optArticleAuthorSelectorx= '.post .post-author li a';
 
   function generateTitleLinks(customSelector = ''){
   /* remove contents of titleList */
@@ -196,32 +197,34 @@ function authorClickHandler(event){
   /* make a new constant "autor" and extract tag from the "href" constant */
   const author = href.replace('#author-', '');
   /* find all tag links with class active */
-
+  const activeAuthorLinks = document.querySelectorAll('.posts .active');
   /* START LOOP: for each active tag link */
-
+  for (let activeAuthorLink of activeAuthorLinks) {
     /* remove class active */
-
+    activeAuthorLink.classList.remove('active');
   /* END LOOP: for each active tag link */
-
+  }
   /* find all tag links with "href" attribute equal to the "href" constant */
-
+  const authorLinks = document.querySelectorAll('a[href="' + href + '"]');
   /* START LOOP: for each found tag link */
-
+    for (let authorLink of authorLinks){
     /* add class active */
-
+    authorLink.classList.add('active');
   /* END LOOP: for each found tag link */
-
+    }
   /* execute function "generateTitleLinks" with article selector as argument */
+  generateTitleLinks('[data-author="' + articleAuthor + '"]');
 }
 
 function addClickListenersToAutors(){
-  /* find all links to tags */
-
+  /* find all links to authors */
+  let links = document.querySelectorAll(optArticleAuthorSelectorx);
   /* START LOOP: for each link */
-
+  for (let link of links) {
     /* add tagClickHandler as event listener for that link */
-
+    link.addEventListener('click', authorClickHandler);
   /* END LOOP: for each link */
+  }
 }
 
-addClickListenersToTags();
+addClickListenersToAutors();
