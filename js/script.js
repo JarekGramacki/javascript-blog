@@ -45,7 +45,8 @@ const optArticleSelector = '.post',
   optArticleTagsSelector = '.post-tags .list',
   optArticleTagsSelectorx = '.post-tags .list li a',
   optArticleAuthorSelector= '.post .post-author',
-  optArticleAuthorSelectorx= '.post .post-author li a';
+  optArticleAuthorSelectorx= '.post .post-author li a',
+  optTagsListSelector= '.tags.list';
 
   function generateTitleLinks(customSelector = ''){
   /* remove contents of titleList */
@@ -86,10 +87,11 @@ generateTitleLinks();
 
 
 function generateTags(){
+  /* [NEW] create a new variable allTags with an empty array */
+  let allTags = [];
+
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
-
-
   /* START LOOP: for every article: */
   for (let article of articles) {
     /* find tags wrapper */
@@ -98,7 +100,6 @@ function generateTags(){
     let html = '';
     /* get tags from data-tags attribute */
     const articleTags = article.getAttribute('data-tags');
-    
     /* split tags into array */
     const articleTagsArray = articleTags.split(' ');
     /* START LOOP: for each tag */
@@ -107,14 +108,22 @@ function generateTags(){
       const linkHTML = '<li><a href="#tag-' + tag + '">' +  tag  +'</a></li>';
       /* add generated code to html variable */
       html = html + linkHTML;
-      //console.log('generowanie kodu do zmiennej html:',html);
+      /* [NEW] check if this link is NOT already in allTags */
+      if(allTags.indexOf(linkHTML) == -1){
+        /* [NEW] add generated code to allTags array */
+        allTags.push(linkHTML);
+      }
     /* END LOOP: for each tag */
     }
     /* insert HTML of all the links into the tags wrapper */
     tagsWraper.innerHTML = html;
-    
   /* END LOOP: for every article: */
   }
+   /* [NEW] find list of tags in right column */
+   const tagList = document.querySelector('.tags');
+
+   /* [NEW] add html from allTags to tagList */
+   tagList.innerHTML = allTags.join(' ');
 }
 generateTags();
 
@@ -160,6 +169,7 @@ function addClickListenersToTags(){
   /* END LOOP: for each link */
   }
 }
+
 
 addClickListenersToTags();
 
@@ -228,3 +238,5 @@ function addClickListenersToAutors(){
 }
 
 addClickListenersToAutors();
+
+
