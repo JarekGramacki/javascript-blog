@@ -82,8 +82,21 @@ const optArticleSelector = '.post',
   titleList.innerHTML = html;
   addClickListenerToAllLinks();
 }
-
 generateTitleLinks();
+
+const params = {max:0, min: 999999}; 
+console.log("max and min :", params);
+function calculateTagsParams(tags){
+  for(let tag in tags){
+    if(tags[tag] > params.max){
+      params.max = tags[tag];
+    }if(tags[tag] < params.min){
+      params.min = tags[tag];
+    }
+  }
+return params;
+
+}
 
 
 function generateTags(){
@@ -125,6 +138,7 @@ function generateTags(){
    const tagList = document.querySelector('.tags');
 
    /* [NEW] create variable for all links HTML code */
+   const tagsParams = calculateTagsParams(allTags);
     let allTagsHTML = '';
 
   /* [NEW] START LOOP: for each tag in allTags: */
