@@ -100,7 +100,14 @@ function calculateTagsParams(tags){
 return params;
 }
 
-//function calculateTagClass (count, params){}
+function calculateTagClass (count, params){
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+  return optCloudClassPrefix + classNumber;
+}
+
 
 function generateTags(){
   /* [NEW] create a new variable allTags with an empty object */
@@ -126,7 +133,7 @@ function generateTags(){
       html = html + linkHTML;
       /* [NEW] check if this link is NOT already in allTags */
       if(!allTags[tag]) {
-  /* [NEW] add tag to allTags object */
+      /* [NEW] add tag to allTags object */
       allTags[tag] = 1;
       } else {
         allTags[tag]++;
@@ -142,22 +149,26 @@ function generateTags(){
 
    /* [NEW] create variable for all links HTML code */
    const tagsParams = calculateTagsParams(allTags);
+
     let allTagsHTML = '';
 
 
     /* [NEW] START LOOP: for each tag in allTags: */
-      for(let tag in allTags){
-        
+    for(let tag in allTags){
+          
     /* [NEW] generate code of a link and add it to allTagsHTML */
     
-      allTagsHTML +='<li><a href="#tag-'+ tag  +' (' + allTags[tag] + ') '+'">'+ tag  +' (' + allTags[tag] + ') '+'</a></li>';
-      console.log('link:', allTagsHTML);
+     // allTagsHTML +='<li><a href="#tag-'+ tag  +'">'+ tag  +' (' + allTags[tag] + ') '+'</a></li>';
+      const tagLinkHTML = '<li><a class="' + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag + '">' + tag + '</a></li>' + '    '; 
+      console.log('link:', tagLinkHTML);
+      
+      allTagsHTML += tagLinkHTML;
     /* [NEW] END LOOP: for each tag in allTags: */
     }
  
   /*[NEW] add HTML from allTagsHTML to tagList */
     tagList.innerHTML = allTagsHTML;
-    }
+   }
 generateTags();
 
 
