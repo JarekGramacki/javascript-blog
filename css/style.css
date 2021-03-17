@@ -84,9 +84,15 @@ body {
 /* Authors */
 .authors li {
   margin-bottom: 12px;
+  list-style-type: none;
 }
 
 /* Post */
+.list li a {
+  padding: 5px;
+  text-decoration: none;
+}
+
 .post {
   display: none;
 }
