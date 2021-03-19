@@ -1,3 +1,7 @@
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
+}
+
 const titleClickHandler = function (event) {
   event.preventDefault();
   const clickedElement = this;
@@ -72,7 +76,8 @@ const optArticleSelector = '.post',
     let articleTitle = article.querySelector(optTitleSelector).innerHTML;
 
     /* create HTML of the link */
-    let linkHTML = '<li><a href="#' + articleId +'"><span>'+ articleTitle +"</span></a></li>";
+    const linkHTMLData = {id: articleId, title: articleTitle};
+    const linkHTML = templates.articleLink(linkHTMLData);
 
     /* insert link into titleList */
     //titleList.innerHTML = titleList.innerHTML + linkHTML;
