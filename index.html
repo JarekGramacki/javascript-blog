@@ -287,9 +287,9 @@
     <script id="template-author-link" type="text/x-handlebars-template">
         <li><a href="#{{ artAuthor }}">{{ artAuthor }}</a></li>
     </script>
-    <script id="template-authorCloud-link" type="text/x-handlebars-template">
+    <script id="template-tagCloud-link" type="text/x-handlebars-template">
         {{#each tags}}
-        <li><a href="#tag-{{ tag }}" class="{{ className }}">{{ tag }}</a></li>
+        <li><a href="#tag-{{ tag }}" class="{{ className }}">{{ tag }}({{ count }})</a></li>
         {{/each}}
     </script>
 
