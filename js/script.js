@@ -1,5 +1,7 @@
 const templates = {
-  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML)
 }
 
 const titleClickHandler = function (event) {
@@ -76,6 +78,8 @@ const optArticleSelector = '.post',
     let articleTitle = article.querySelector(optTitleSelector).innerHTML;
 
     /* create HTML of the link */
+    //const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+                      //<li><a href="#{{ id }}"><span>{{ title }}</span></a></li>
     const linkHTMLData = {id: articleId, title: articleTitle};
     const linkHTML = templates.articleLink(linkHTMLData);
 
@@ -135,7 +139,11 @@ function generateTags(){
     /* START LOOP: for each tag */
     for (let tag of articleTagsArray){
       /* generate HTML of the link */
-      const linkHTML = '<li><a href="#tag-' + tag + '">' +  tag  +'</a></li>';
+      //const linkHTML = '<li><a href="#tag-' + tag + '">' +  tag  +'</a></li>';
+                          
+      const linkHTMLData = {dataTags: tag};
+      //console.log('linnk html:',linkHTMLData);
+      const linkHTML = templates.tagLink(linkHTMLData);
       /* add generated code to html variable */
       html = html + linkHTML;
       /* [NEW] check if this link is NOT already in allTags */
@@ -238,7 +246,10 @@ function generateAuthors(){
     const articleAuthor = article.getAttribute('data-author');
    
     /* generate HTML of the link */
-    const linkHTML = '<li><a href="#author-' + articleAuthor + '">' +  articleAuthor  +'</a></li>';
+    //const linkHTML = '<li><a href="#author-' + articleAuthor + '">' +  articleAuthor  +'</a></li>';
+    const linkHTMLData = {artAuthor: articleAuthor};
+    console.log('authors:',linkHTMLData)
+    const linkHTML = templates.authorLink(linkHTMLData);
     /* add generated code to html variable */
     html = html + linkHTML;
     /* insert HTML of all the links into the autors wrapper */
