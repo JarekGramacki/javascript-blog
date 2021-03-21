@@ -11,6 +11,8 @@ const templates = {
   tagCloudLink: Handlebars.compile(
     document.querySelector("#template-tagCloud-link").innerHTML
   ),
+  authorCloudLink: Handlebars.compile(
+    document.querySelector('#template-authorCloud-link').innerHTML)
 };
 
 const optArticleSelector = ".post",
@@ -243,6 +245,10 @@ function addClickListenersToTags(tagSelector) {
 addClickListenersToTags(optArticleTagsSelectorx);
 addClickListenersToTags(optTagsListSelector);
 
+
+
+
+
 function generateAuthors() {
   let allAuthors = {};
   /* find all articles */
@@ -278,17 +284,13 @@ function generateAuthors() {
   const autListWrapper = document.querySelector(optAuthorsListSelector);
   for (let aut in allAuthors) {
     const autLink =
-      '<li><a href="#author-' +
-      aut +
-      '">' +
-      aut +
-      " (" +
-      allAuthors[aut] +
-      ") </a></li>";
+      '<li><a href="#author-' + aut + '">' + aut + " (" + allAuthors[aut] + ") </a></li>";
     autListWrapper.innerHTML += autLink;
   }
 }
 generateAuthors();
+
+
 
 function authorClickHandler(event) {
   /* prevent default action for this event */
